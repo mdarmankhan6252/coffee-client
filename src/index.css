@@ -1,0 +1,25 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+a.active{
+  color: #000080;
+}
+body{
+  overflow-x: hidden;
+}
+.custom_btn_1{
+  border: 2px solid white;
+  background-color: transparent;
+  color: #fff;
+  padding: 12px 32px;
+  font-weight: 500;
+  transition: 0.5s;
+}
+.custom_btn_1:hover{
+  scale: 105%;
+}
+
+.click_path{
+  clip-path: polygon(40% 0%, 40% 20%, 100% 20%, 100% 80%, 40% 80%, 40% 100%, 0% 50%);
+}
