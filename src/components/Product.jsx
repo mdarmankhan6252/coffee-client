@@ -40,19 +40,6 @@ const Product = ({ product, setProducts, products }) => {
       });
    }
 
-   const handleUpdate = (id) => {
-      fetch(`http://localhost:5000/coffee/${id}`, {
-         method: 'PUT',
-         headers: {
-            'content-type': 'application/json'
-         },
-         body: JSON.stringify()
-      })
-         .then(res => res.json())
-         .then(data => {
-            console.log(data);
-         })
-   }
    return (
       <div className='flex items-center justify-between bg-[#f2f2ff] p-4 border rounded-xl duration-300 hover:scale-[1.02]'>
          <div>
@@ -66,7 +53,7 @@ const Product = ({ product, setProducts, products }) => {
          <div className='space-y-2'>
             <IoEyeOutline title='Details' className='bg-blue-500 text-white text-3xl p-1 cursor-pointer mb-2' />
             <Link product={product} to={`/updateProduct/${_id}`}>
-               <TiPencil onClick={() => handleUpdate(_id)} title='Update' className='bg-green-500 text-white text-3xl p-1 cursor-pointer' /></Link>
+               <TiPencil title='Update' className='bg-green-500 text-white text-3xl p-1 cursor-pointer' /></Link>
             <MdDelete onClick={() => handleDeleteProduct(_id)} title='Delete' className='bg-red-500 text-white text-3xl p-1 cursor-pointer' />
          </div>
       </div>

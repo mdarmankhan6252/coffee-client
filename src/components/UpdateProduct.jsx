@@ -1,8 +1,14 @@
 import { IoIosArrowBack } from "react-icons/io";
-import { Link } from "react-router-dom";
+import { Link, useLoaderData, useNavigate } from "react-router-dom";
+import Swal from "sweetalert2";
 
-const UpdateProduct = ({ product }) => {
-   console.log(product);
+const UpdateProduct = () => {
+
+   const coffee = useLoaderData();
+   const navigate = useNavigate()
+   console.log(coffee);
+   const {_id, name, chef, price, img_url} = coffee;
+
    const handleUpdate = e => {
       e.preventDefault();
       const form = e.target;
@@ -12,6 +18,25 @@ const UpdateProduct = ({ product }) => {
       const img_url = form.img_url.value;
       const product = { name, chef, price, img_url }
       console.log(product);
+      fetch(`http://localhost:5000/coffee/${_id}`, {
+         method:'PUT',
+         headers:{
+            'content-type' : 'application/json'
+         },
+         body: JSON.stringify(product)
+      })
+      .then(res => res.json())
+      .then(data =>{
+         if(data.modifiedCount > 0){
+            Swal.fire({
+               icon: "success",
+               title: "Product is updated",
+               showConfirmButton: false,
+               timer: 1500
+             });
+             navigate('/')
+         }
+      })
 
    }
 
@@ -21,10 +46,10 @@ const UpdateProduct = ({ product }) => {
             <Link to='/'>
                <IoIosArrowBack className=" top-5 left-5 text-3xl p-1 bg-red-500 text-white rounded-full active:bg-red-600 cursor-pointer" /></Link>
             <h2 className="font-semibold text-xl text-center">Update Your Product</h2>
-            <input type="text" name="name" placeholder="Name" required className="w-full border p-2" />
-            <input type="text" name="chef" placeholder="Chef" required className="w-full border p-2" />
-            <input type="text" name="price" placeholder="Price" required className="w-full border p-2" />
-            <input type="text" name="img_url" placeholder="Photo URL" required className="w-full border p-2" />
+            <input type="text" name="name" placeholder="Name" required className="w-full border p-2" defaultValue={name}/>
+            <input type="text" name="chef" placeholder="Chef" required className="w-full border p-2" defaultValue={chef}/>
+            <input type="text" name="price" placeholder="Price" required className="w-full border p-2" defaultValue={price}/>
+            <input type="text" name="img_url" placeholder="Photo URL" required className="w-full border p-2" defaultValue={img_url}/>
             <input type="submit" value="UPDATE" className="border p-2 w-full active:bg-gray-50 font-semibold" />
          </form>
       </div>
