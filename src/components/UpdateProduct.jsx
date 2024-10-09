@@ -18,7 +18,7 @@ const UpdateProduct = () => {
       const img_url = form.img_url.value;
       const product = { name, chef, price, img_url }
       console.log(product);
-      fetch(`http://localhost:5000/coffee/${_id}`, {
+      fetch(`https://coffee-server-gray.vercel.app/coffee/${_id}`, {
          method:'PUT',
          headers:{
             'content-type' : 'application/json'

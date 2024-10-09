@@ -24,6 +24,6 @@ export const router = createBrowserRouter([
    {
       path:"/updateProduct/:id",
       element:<UpdateProduct/>,
-      loader:({params}) => fetch(`http://localhost:5000/coffee/${params.id}`)
+      loader:({params}) => fetch(`https://coffee-server-gray.vercel.app/coffee/${params.id}`)
    }
 ]);
