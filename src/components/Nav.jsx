@@ -48,16 +48,14 @@ const Nav = () => {
             <ul className='*:uppercase space-x-5 font-semibold sm:block hidden'>
                <NavLink to='/'>home</NavLink>
                <NavLink to='/about'>About</NavLink>
-               <NavLink to='/addProduct'>Add product</NavLink>
+               {user && <NavLink to='/addProduct'>Add product</NavLink>}
                
                { user ? <>
                   <NavLink to='/users'>Users</NavLink>
                   <span onClick={() => logOut()} className='bg-[#ff0000] text-white py-1 px-2 rounded-md cursor-pointer'>Sign Out</span>
                   </>
                :
-                  <>
                   <NavLink to='/signIn'>Sign In</NavLink>
-                  <NavLink to='/signUp'>Sign Up</NavLink></>
                }
             </ul>
 

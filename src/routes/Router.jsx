@@ -33,13 +33,13 @@ export const router = createBrowserRouter([
          {
             path:'/users',
             element:<Users/>,
-            loader:() => fetch('http://localhost:5000/users')
+            loader:() => fetch('https://coffee-server-nine-sand.vercel.app/users')
          }
       ]
    },
    {
       path:"/updateProduct/:id",
       element:<UpdateProduct/>,
-      loader:({params}) => fetch(`http://localhost:5000/coffee/${params.id}`)
+      loader:({params}) => fetch(`https://coffee-server-nine-sand.vercel.app/coffee/${params.id}`)
    }
 ]);

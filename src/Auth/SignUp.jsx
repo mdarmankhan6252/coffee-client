@@ -1,7 +1,7 @@
 import { useContext } from "react";
 import { AuthContext } from "../provider/AuthProvider";
 import Swal from 'sweetalert2'
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 const SignUp = () => {
    const { createUser, googleLogin } = useContext(AuthContext)
@@ -18,7 +18,7 @@ const SignUp = () => {
             console.log(result.user);
             const createdAt = result.user.metadata.creationTime;
             const user = { email, createdAt }
-            fetch('http://localhost:5000/users', {
+            fetch('https://coffee-server-nine-sand.vercel.app/users', {
                method:'POST',
                headers:{
                   'content-type' : 'application/json'
@@ -50,6 +50,7 @@ const SignUp = () => {
       googleLogin()
          .then(result => {
             console.log(result.user);
+            navigate('/')
          })
          .catch(err => {
             console.log(err);
@@ -64,6 +65,7 @@ const SignUp = () => {
             <input className="active:bg-gray-50 font-semibold" type="submit" value="Sign Up" />
 
          </form>
+         <p className="pt-4">Already have an account ? <Link to='/signIn' className="hover:underline font-semibold hover:text-green-500">Sing In</Link></p>
          <button onClick={handleGoogleLogin} className="font-semibold text-green-500 mt-8 p-2 border-2 active:bg-green-500 active:text-white">Google</button>
       </div>
    );
