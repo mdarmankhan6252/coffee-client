@@ -1,9 +1,9 @@
 import { useContext } from "react";
 import { AuthContext } from "../provider/AuthProvider";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, Navigate, useNavigate } from "react-router-dom";
 
 const SignIn = () => {
-   const { loginUser, googleLogin } = useContext(AuthContext)
+   const {user, loginUser, googleLogin } = useContext(AuthContext)
    const navigate = useNavigate()
    const handleSignIn = e => {
       e.preventDefault();
@@ -50,6 +50,10 @@ const SignIn = () => {
             console.log(err);
          })
 
+   }
+
+   if(user){
+      return <Navigate to='/'></Navigate>
    }
    return (
       <div className="max-w-xl py-10 px-6 border mx-auto mt-24 mb-10">

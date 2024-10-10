@@ -1,10 +1,10 @@
 import { useContext } from "react";
 import { AuthContext } from "../provider/AuthProvider";
 import Swal from 'sweetalert2'
-import { Link, useNavigate } from "react-router-dom";
+import { Link, Navigate, useNavigate } from "react-router-dom";
 
 const SignUp = () => {
-   const { createUser, googleLogin } = useContext(AuthContext)
+   const {user, createUser, googleLogin } = useContext(AuthContext)
    const navigate = useNavigate();
    const handleSignUp = e => {
       e.preventDefault();
@@ -56,6 +56,13 @@ const SignUp = () => {
             console.log(err);
          })
 
+   }
+
+   if(user){
+      return <Navigate to='/'></Navigate>
+   }
+   if(user){
+      return
    }
    return (
       <div className="max-w-xl py-10 px-6 border mx-auto mt-24 mb-10">

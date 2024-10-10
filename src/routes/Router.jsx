@@ -7,6 +7,7 @@ import ErrorPage from "../components/ErrorPage";
 import SignIn from "../Auth/SignIn";
 import SignUp from "../Auth/SignUp";
 import Users from "../components/Users";
+import PrivateRoute from "./PrivateRoute";
 
 export const router = createBrowserRouter([
    {
@@ -20,7 +21,7 @@ export const router = createBrowserRouter([
          },
          {
             path:'/addProduct',
-            element:<AddProduct/>
+            element:<PrivateRoute><AddProduct/></PrivateRoute>
          },
          {
             path:'/signIn',
@@ -32,14 +33,14 @@ export const router = createBrowserRouter([
          },
          {
             path:'/users',
-            element:<Users/>,
+            element:<PrivateRoute><Users/></PrivateRoute>,
             loader:() => fetch('https://coffee-server-nine-sand.vercel.app/users')
          }
       ]
    },
    {
       path:"/updateProduct/:id",
-      element:<UpdateProduct/>,
+      element:<PrivateRoute><UpdateProduct/></PrivateRoute>,
       loader:({params}) => fetch(`https://coffee-server-nine-sand.vercel.app/coffee/${params.id}`)
    }
 ]);
