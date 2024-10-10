@@ -1,6 +1,7 @@
 #### Coffee shop
-- client-live : https://thunderous-pasca-701010.netlify.app
-- server-live : https://coffee-server-gray.vercel.app
+- client-live : https://coffee-shop-cacd3.web.app
+- server-live : https://coffee-server-nine-sand.vercel.app
+
 #### Github repository
-- https://github.com/mdarmankhan6252/coffee-server
--  https://github.com/mdarmankhan6252/coffee-client/tree/main
+- client : https://github.com/mdarmankhan6252/coffee-server
+- server : https://github.com/mdarmankhan6252/coffee-client/tree/main
