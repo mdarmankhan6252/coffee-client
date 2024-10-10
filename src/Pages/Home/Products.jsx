@@ -5,7 +5,7 @@ import Product from "../../components/Product";
 const Products = () => {
    const [products, setProducts] = useState([]);
    useEffect(() =>{
-      fetch('https://coffee-server-gray.vercel.app/coffee')
+      fetch('http://localhost:5000/coffee')
       .then(res => res.json())
       .then(data => {
          setProducts(data)

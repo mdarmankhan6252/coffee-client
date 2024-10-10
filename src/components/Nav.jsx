@@ -1,13 +1,15 @@
 import { Link, NavLink } from 'react-router-dom';
 import logo from '../assets/logo.png'
 import { FaUser } from 'react-icons/fa';
-import { useEffect, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import { RiMenu2Fill } from "react-icons/ri";
 import { IoCloseOutline } from "react-icons/io5";
 import ThemeController from './ThemeController';
+import { AuthContext } from '../provider/AuthProvider';
 
 const Nav = () => {
    const [scrollPosition, setScrollPosition] = useState(0)
+   const { user, logOut } = useContext(AuthContext)
    const [showNav, setShowNav] = useState(true)
    const [menu, setMenu] = useState(false)
 
@@ -47,6 +49,16 @@ const Nav = () => {
                <NavLink to='/'>home</NavLink>
                <NavLink to='/about'>About</NavLink>
                <NavLink to='/addProduct'>Add product</NavLink>
+               
+               { user ? <>
+                  <NavLink to='/users'>Users</NavLink>
+                  <span onClick={() => logOut()} className='bg-[#ff0000] text-white py-1 px-2 rounded-md cursor-pointer'>Sign Out</span>
+                  </>
+               :
+                  <>
+                  <NavLink to='/signIn'>Sign In</NavLink>
+                  <NavLink to='/signUp'>Sign Up</NavLink></>
+               }
             </ul>
 
             <div onClick={() => setMenu(!menu)} className='text-3xl cursor-pointer sm:hidden '>
@@ -54,8 +66,8 @@ const Nav = () => {
             </div>
 
             <div className='flex items-center space-x-3'>
-               <ThemeController/>
-               <div className='border-2 border-transparent ring-2 ring-lime-500 rounded-full p-1.5'>
+               <ThemeController />
+               <div title={user?.email} className='border-2 border-transparent ring-2 ring-lime-500 rounded-full p-1.5'>
                   <FaUser className='text-lg' />
                </div>
             </div>

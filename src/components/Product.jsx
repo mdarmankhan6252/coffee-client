@@ -21,7 +21,7 @@ const Product = ({ product, setProducts, products }) => {
          confirmButtonText: "Yes, delete it!"
       }).then((result) => {
          if (result.isConfirmed) {
-            fetch(`https://coffee-server-gray.vercel.app/coffee/${id}`, {
+            fetch(`http://localhost:5000/coffee/${id}`, {
                method: 'DELETE'
             })
                .then(res => res.json())

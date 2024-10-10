@@ -6,7 +6,6 @@ const UpdateProduct = () => {
 
    const coffee = useLoaderData();
    const navigate = useNavigate()
-   console.log(coffee);
    const {_id, name, chef, price, img_url} = coffee;
 
    const handleUpdate = e => {
@@ -17,8 +16,7 @@ const UpdateProduct = () => {
       const price = form.price.value;
       const img_url = form.img_url.value;
       const product = { name, chef, price, img_url }
-      console.log(product);
-      fetch(`https://coffee-server-gray.vercel.app/coffee/${_id}`, {
+      fetch(`http://localhost:5000/coffee/${_id}`, {
          method:'PUT',
          headers:{
             'content-type' : 'application/json'
@@ -35,6 +33,14 @@ const UpdateProduct = () => {
                timer: 1500
              });
              navigate('/')
+         }
+         if(data.modifiedCount === 0){
+            Swal.fire({
+               icon: "error",
+               title: "Please update something.",
+               showConfirmButton: false,
+               timer: 1500
+             });
          }
       })
 
